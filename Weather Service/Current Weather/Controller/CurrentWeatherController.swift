@@ -17,7 +17,11 @@ class CurrentWeatherController:UICollectionViewController {
 
     
     var currentWeatherPresenter:CurrentWeatherPresenterProtocol?
-    var currentWeathers:[CurrentWeatherResponse]?
+    var currentWeathers:[CurrentWeatherResponse]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     lazy var actionButton:UIButton = {
         let button = UIButton(type: .system)
@@ -30,6 +34,7 @@ class CurrentWeatherController:UICollectionViewController {
         button.layer.shadowOffset = CGSize(width: 5, height: 5)
         button.layer.shadowOpacity = 0.5
         button.layer.masksToBounds = false
+        button.addTarget(self, action: #selector(handleActionButtonTap), for: .touchUpInside)
         return button
     }()
 
@@ -38,8 +43,8 @@ class CurrentWeatherController:UICollectionViewController {
 
     
     override func viewDidLoad() {
-        collectionView.backgroundColor = .green
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        configureCollectionView()
+        configureUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +64,20 @@ class CurrentWeatherController:UICollectionViewController {
     // MARK:- Helper functions
     
     
+    func configureCollectionView() {
+        collectionView.backgroundColor = .green
+        collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    func configureUI() {
+        view.addSubview(actionButton)
+        actionButton.anchor(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 120, paddingRight: 16, width: 64, height: 64)
+        actionButton.layer.cornerRadius = 56 / 2
+    }
+    
+    
+    /// Batch insert function used only once to map the file cit.list.json dowloaded from open weather to core data. The corrdinates where not mapped into the database because we don't consider it necessary.
+    /// - Parameter container: the nspersistent container
     private func batchInsertIntContext(container:NSPersistentContainer) {
         
         let backgroundContext = container.newBackgroundContext()
@@ -72,7 +91,6 @@ class CurrentWeatherController:UICollectionViewController {
             let batchInsert = NSBatchInsertRequest(entity: City.entity(), objects: objects)
             batchInsert.resultType = .objectIDs
             let result = try? backgroundContext.execute(batchInsert) as? NSBatchInsertResult
-            
             if let objIds = result?.result as? [NSManagedObjectID], !objIds.isEmpty {
                 let save = [NSInsertedObjectsKey: objIds]
                 NSManagedObjectContext.mergeChanges(fromRemoteContextSave: save, into: [container.viewContext])
@@ -83,7 +101,13 @@ class CurrentWeatherController:UICollectionViewController {
     
     
     // MARK:- Selectors
-    
+        
+    @objc func handleActionButtonTap() {
+        let selectCity = SelectCityController()
+        let navCon = UINavigationController(rootViewController: selectCity)
+        navCon.modalPresentationStyle = .fullScreen
+        present(navCon, animated: true, completion: nil)
+    }
 
 }
 
@@ -100,16 +124,23 @@ extension CurrentWeatherController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = .blue
-        } else {
-            cell.backgroundColor = .red
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
+        cell.cityWeather = currentWeathers![indexPath.row]
         return cell
     }
     
 }
+
+
+// MARK:- UICollectionViewDelegateFlowLayour
+
+extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: view.frame.width - 30, height: 150)
+    }
+}
+
 
 
 
@@ -124,7 +155,7 @@ extension CurrentWeatherController: CurrentWeatherViewDelegateProtocol {
     }
     
     func didReceiveFailure(currentWeatherError: CurrentWeatherError) {
-        
+        //TODO: - Handle appropiately the error with an alert controller
     }
     
     
