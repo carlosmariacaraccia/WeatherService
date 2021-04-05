@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CitiesInStudy" representedClassName="CitiesInStudy" syncable="YES" codeGenerationType="class">
+        <relationship name="cities_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="citiesInStudy" inverseEntity="City"/>
+    </entity>
+    <entity name="City" representedClassName="City" syncable="YES" codeGenerationType="class">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <relationship name="citiesInStudy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CitiesInStudy" inverseName="cities_" inverseEntity="CitiesInStudy"/>
+    </entity>
+    <entity name="Coord" representedClassName="Coord" syncable="YES" codeGenerationType="class">
+        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="CitiesInStudy" positionX="-54" positionY="-9" width="128" height="44"/>
+        <element name="Coord" positionX="-36" positionY="9" width="128" height="59"/>
+    </elements>
 </model>
