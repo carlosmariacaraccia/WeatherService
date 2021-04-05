@@ -58,6 +58,8 @@ class CitySelectionManager:CitySelectionManagerProtocol {
     }
     
     
+    /// Fetched the cities in the relationship
+    /// - Returns: an optional array of the citites in study
     func fetchCitiesInStudy() -> [City]? {
         
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CitiesInStudy")

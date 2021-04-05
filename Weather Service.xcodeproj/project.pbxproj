@@ -34,6 +34,10 @@
 		1FE1C1EE261B280500850090 /* CurrentWeatherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C1EC261B280500850090 /* CurrentWeatherError.swift */; };
 		1FE1C1F2261B281F00850090 /* CurrentWeatherWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C1F1261B281F00850090 /* CurrentWeatherWebService.swift */; };
 		1FE1C1F6261B283D00850090 /* CitySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C1F5261B283D00850090 /* CitySelectionManager.swift */; };
+		1FE1C1FC261B2FFF00850090 /* CurrrentWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C1FB261B2FFF00850090 /* CurrrentWeatherCell.swift */; };
+		1FE1C201261B314400850090 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C200261B314400850090 /* Extensions.swift */; };
+		1FE1C207261B4D7D00850090 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FE1C206261B4D7C00850090 /* city.list.json */; };
+		1FE1C20B261B4E2200850090 /* ImportingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C20A261B4E2200850090 /* ImportingModel.swift */; };
 		BB19AC170A9CB6D93A2ABCF5 /* Pods_Weather_Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7E751F9125AD2299E15FF8 /* Pods_Weather_Service.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +85,10 @@
 		1FE1C1EC261B280500850090 /* CurrentWeatherError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherError.swift; sourceTree = "<group>"; };
 		1FE1C1F1261B281F00850090 /* CurrentWeatherWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherWebService.swift; sourceTree = "<group>"; };
 		1FE1C1F5261B283D00850090 /* CitySelectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionManager.swift; sourceTree = "<group>"; };
+		1FE1C1FB261B2FFF00850090 /* CurrrentWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrrentWeatherCell.swift; sourceTree = "<group>"; };
+		1FE1C200261B314400850090 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1FE1C206261B4D7C00850090 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
+		1FE1C20A261B4E2200850090 /* ImportingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportingModel.swift; sourceTree = "<group>"; };
 		56F5DF86D8AEB15B368FA4F8 /* Pods-Weather Service.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Service.release.xcconfig"; path = "Target Support Files/Pods-Weather Service/Pods-Weather Service.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,11 +136,13 @@
 			children = (
 				1FE1C164261B08CB00850090 /* AppDelegate.swift */,
 				1FE1C166261B08CB00850090 /* SceneDelegate.swift */,
+				1FE1C1FF261B311D00850090 /* Utilities */,
 				1FE1C1A6261B22E200850090 /* Select City */,
 				1FE1C19E261B225C00850090 /* Current Weather */,
 				1FE1C170261B08D100850090 /* Assets.xcassets */,
 				1FE1C172261B08D100850090 /* LaunchScreen.storyboard */,
 				1FE1C17D261B1B0700850090 /* Avenir Next.ttc */,
+				1FE1C206261B4D7C00850090 /* city.list.json */,
 				1FE1C175261B08D100850090 /* Info.plist */,
 				1FE1C16D261B08CB00850090 /* Weather_Service.xcdatamodeld */,
 			);
@@ -292,6 +302,7 @@
 			children = (
 				1FE1C1EC261B280500850090 /* CurrentWeatherError.swift */,
 				1FE1C1EB261B280500850090 /* CurrentWeatherResponse.swift */,
+				1FE1C20A261B4E2200850090 /* ImportingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,6 +318,7 @@
 		1FE1C1A4261B22BA00850090 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FE1C1FB261B2FFF00850090 /* CurrrentWeatherCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,6 +368,14 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1FE1C1FF261B311D00850090 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1FE1C200261B314400850090 /* Extensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		9FD3AC3C7EAFCB9BB08E7BCE /* Frameworks */ = {
@@ -459,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE1C17E261B1B0800850090 /* Avenir Next.ttc in Resources */,
+				1FE1C207261B4D7D00850090 /* city.list.json in Resources */,
 				1FE1C174261B08D100850090 /* LaunchScreen.storyboard in Resources */,
 				1FE1C171261B08D100850090 /* Assets.xcassets in Resources */,
 			);
@@ -529,8 +550,11 @@
 				1FE1C1EE261B280500850090 /* CurrentWeatherError.swift in Sources */,
 				1FE1C1E6261B27DE00850090 /* CurrentWeatherPresenterProtocol.swift in Sources */,
 				1FE1C1F2261B281F00850090 /* CurrentWeatherWebService.swift in Sources */,
+				1FE1C20B261B4E2200850090 /* ImportingModel.swift in Sources */,
 				1FE1C1E7261B27DE00850090 /* CurrentWeatherWebServiceProtocol.swift in Sources */,
+				1FE1C201261B314400850090 /* Extensions.swift in Sources */,
 				1FE1C165261B08CB00850090 /* AppDelegate.swift in Sources */,
+				1FE1C1FC261B2FFF00850090 /* CurrrentWeatherCell.swift in Sources */,
 				1FE1C167261B08CB00850090 /* SceneDelegate.swift in Sources */,
 				1FE1C1ED261B280500850090 /* CurrentWeatherResponse.swift in Sources */,
 			);
