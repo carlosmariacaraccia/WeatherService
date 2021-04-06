@@ -65,7 +65,7 @@ class CurrentWeatherController:UICollectionViewController {
     
     
     func configureCollectionView() {
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = .white
         collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
@@ -75,6 +75,8 @@ class CurrentWeatherController:UICollectionViewController {
         actionButton.layer.cornerRadius = 56 / 2
     }
     
+    
+    //TODO: - Create and utilities class and add the batch insert to it and move it away from the main controller class.
     
     /// Batch insert function used only once to map the file cit.list.json dowloaded from open weather to core data. The corrdinates where not mapped into the database because we don't consider it necessary.
     /// - Parameter container: the nspersistent container
@@ -108,7 +110,7 @@ class CurrentWeatherController:UICollectionViewController {
         navCon.modalPresentationStyle = .fullScreen
         present(navCon, animated: true, completion: nil)
     }
-
+    
 }
 
 
@@ -119,16 +121,23 @@ extension CurrentWeatherController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        currentWeathers?.count ?? 0
+        currentWeathers?.count ?? 5
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
-        cell.cityWeather = currentWeathers![indexPath.row]
+        if let climateInCities = currentWeathers {
+            cell.loadingIconCityWeatherView.stopShimmeringAnimation()
+            cell.loadingDescriptionCityWeatherView.stopShimmeringAnimation()
+            cell.loadingMainCityWeatherView.stopShimmeringAnimation()
+            cell.cityWeather = climateInCities[indexPath.row]
+        } else {
+            cell.loadingIconCityWeatherView.startShimmeringAnimation()
+            cell.loadingDescriptionCityWeatherView.startShimmeringAnimation()
+            cell.loadingMainCityWeatherView.startShimmeringAnimation()
+        }
         return cell
     }
-    
 }
 
 

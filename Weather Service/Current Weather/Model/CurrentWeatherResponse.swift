@@ -32,7 +32,7 @@ struct Clouds:Decodable {
 
 // MARK: - Main
 struct Main:Decodable {
-    let temp, feelsLike, tempMin, tempMax: Double?
+    let temp, feelsLike, temp_min, temp_max: Double?
     let pressure, humidity: Int?
 }
 
@@ -46,7 +46,7 @@ struct Sys:Decodable {
 // MARK: - Weather
 struct Weather:Decodable {
     let id: Int?
-    let main, weatherDescription, icon: String?
+    let main, description, icon: String?
 }
 
 // MARK: - Wind

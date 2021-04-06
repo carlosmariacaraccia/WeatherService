@@ -51,6 +51,8 @@
 		1FE1C232261B60B700850090 /* MockSelectionCityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C230261B60B700850090 /* MockSelectionCityStorage.swift */; };
 		1FE1C233261B60B700850090 /* MockSelectCityViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C231261B60B700850090 /* MockSelectCityViewDelegate.swift */; };
 		1FE1C237261B60CE00850090 /* SelectCityControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C236261B60CE00850090 /* SelectCityControllerTests.swift */; };
+		1FE1C242261B8A3200850090 /* CurrentWeatherCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C241261B8A3200850090 /* CurrentWeatherCellPresenter.swift */; };
+		1FE1C246261BA4AC00850090 /* ShimmeringEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */; };
 		BB19AC170A9CB6D93A2ABCF5 /* Pods_Weather_Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7E751F9125AD2299E15FF8 /* Pods_Weather_Service.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		1FE1C230261B60B700850090 /* MockSelectionCityStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSelectionCityStorage.swift; sourceTree = "<group>"; };
 		1FE1C231261B60B700850090 /* MockSelectCityViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSelectCityViewDelegate.swift; sourceTree = "<group>"; };
 		1FE1C236261B60CE00850090 /* SelectCityControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityControllerTests.swift; sourceTree = "<group>"; };
+		1FE1C241261B8A3200850090 /* CurrentWeatherCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCellPresenter.swift; sourceTree = "<group>"; };
+		1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringEffect.swift; sourceTree = "<group>"; };
 		56F5DF86D8AEB15B368FA4F8 /* Pods-Weather Service.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Service.release.xcconfig"; path = "Target Support Files/Pods-Weather Service/Pods-Weather Service.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE1C1DD261B27B200850090 /* CurrentWeatherPresenter.swift */,
+				1FE1C241261B8A3200850090 /* CurrentWeatherCellPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE1C200261B314400850090 /* Extensions.swift */,
+				1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -589,6 +595,7 @@
 				1FE1C1E8261B27DE00850090 /* CurrentWeatherViewDelegateProtocol.swift in Sources */,
 				1FE1C1DE261B27B200850090 /* CurrentWeatherPresenter.swift in Sources */,
 				1FE1C1EE261B280500850090 /* CurrentWeatherError.swift in Sources */,
+				1FE1C242261B8A3200850090 /* CurrentWeatherCellPresenter.swift in Sources */,
 				1FE1C1E6261B27DE00850090 /* CurrentWeatherPresenterProtocol.swift in Sources */,
 				1FE1C215261B601C00850090 /* SelectionCityStorage.swift in Sources */,
 				1FE1C21F261B604700850090 /* SelectionCityStorageProtocol.swift in Sources */,
@@ -596,6 +603,7 @@
 				1FE1C20B261B4E2200850090 /* ImportingModel.swift in Sources */,
 				1FE1C1E7261B27DE00850090 /* CurrentWeatherWebServiceProtocol.swift in Sources */,
 				1FE1C201261B314400850090 /* Extensions.swift in Sources */,
+				1FE1C246261BA4AC00850090 /* ShimmeringEffect.swift in Sources */,
 				1FE1C165261B08CB00850090 /* AppDelegate.swift in Sources */,
 				1FE1C1FC261B2FFF00850090 /* CurrrentWeatherCell.swift in Sources */,
 				1FE1C167261B08CB00850090 /* SceneDelegate.swift in Sources */,

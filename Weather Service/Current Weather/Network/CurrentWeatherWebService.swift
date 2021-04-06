@@ -23,7 +23,7 @@ class CurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
         components.host = "api.openweathermap.org"
         components.path = "/data/2.5/weather"
         let queryItem1 = URLQueryItem(name: "id", value: cityId)
-        let queryItem2 = URLQueryItem(name: "lang", value: "sp")
+        let queryItem2 = URLQueryItem(name: "lang", value: "es")
         let queryItem3 = URLQueryItem(name: "units", value: "metric")
         let queryItem4 = URLQueryItem(name: "appid", value: "3deb5e13d6f1b909acd03720e9822e54")
         components.queryItems = [queryItem1, queryItem2, queryItem3, queryItem4]
