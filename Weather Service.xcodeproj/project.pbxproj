@@ -143,6 +143,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F7DD7C8261CCFA2004C22FF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		1FE1C158261B08CB00850090 = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE1C189261B215500850090 /* Info.plist */,
+				1F7DD7C8261CCFA2004C22FF /* New Group */,
 				1FE1C199261B21FE00850090 /* Select city tests */,
 				1FE1C193261B21A900850090 /* Current Weather Tests */,
 			);
