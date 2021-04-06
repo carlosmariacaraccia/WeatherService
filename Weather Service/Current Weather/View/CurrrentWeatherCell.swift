@@ -12,12 +12,10 @@ class CurrentWeatherCell:UICollectionViewCell {
     
     var cityWeather:CurrentWeatherResponse? {
         didSet {
-            // remove the initialized views
+            guard let cityWeather = cityWeather else { return }
             removeViews()
-            // add the labels and icon to the views
             addLabelsAndIcons()
-            // set the values of the labels and icons
-            loadString(cityWeather: cityWeather!)
+            loadString(cityWeather: cityWeather)
         }
     }
     
@@ -84,6 +82,7 @@ class CurrentWeatherCell:UICollectionViewCell {
     
     private lazy var loadedLeftContainerView:UIView = {
         let view = UIView()
+        
         view.addSubview(cityLabel)
         cityLabel.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 40)
         
@@ -111,7 +110,11 @@ class CurrentWeatherCell:UICollectionViewCell {
         weatherIcon.anchor(top: topAnchor, left: loadedLeftContainerView.rightAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
     }
     
+    
+    //TODO: - Rename this load string awfull name for a funtion to something more suitable.
+    
     private func loadString(cityWeather:CurrentWeatherResponse) {
+        
         let name = cityWeather.name ?? "No name in city weather"
         let temp = cityWeather.main?.temp ?? 0.00
         let description = cityWeather.weather?.first?.description ?? ""
@@ -121,6 +124,7 @@ class CurrentWeatherCell:UICollectionViewCell {
         let imageStr = "http://openweathermap.org/img/wn/" + im + "@2x.png"
         let imageUrl = URL(string: imageStr)
         weatherIcon.sd_setImage(with: imageUrl, completed: nil)
+        
     }
 
     
@@ -130,8 +134,10 @@ class CurrentWeatherCell:UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .white
+        
         addSubview(leftContainerView)
         leftContainerView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 8, height: 30)
+        
         addSubview(loadingIconCityWeatherView)
         loadingIconCityWeatherView.anchor(top: topAnchor, left: leftContainerView.rightAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
     }

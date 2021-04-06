@@ -53,6 +53,7 @@
 		1FE1C237261B60CE00850090 /* SelectCityControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C236261B60CE00850090 /* SelectCityControllerTests.swift */; };
 		1FE1C242261B8A3200850090 /* CurrentWeatherCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C241261B8A3200850090 /* CurrentWeatherCellPresenter.swift */; };
 		1FE1C246261BA4AC00850090 /* ShimmeringEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */; };
+		1FE1C24E261CA33900850090 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C24D261CA33800850090 /* Utilities.swift */; };
 		BB19AC170A9CB6D93A2ABCF5 /* Pods_Weather_Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7E751F9125AD2299E15FF8 /* Pods_Weather_Service.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		1FE1C236261B60CE00850090 /* SelectCityControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityControllerTests.swift; sourceTree = "<group>"; };
 		1FE1C241261B8A3200850090 /* CurrentWeatherCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCellPresenter.swift; sourceTree = "<group>"; };
 		1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringEffect.swift; sourceTree = "<group>"; };
+		1FE1C24D261CA33800850090 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		56F5DF86D8AEB15B368FA4F8 /* Pods-Weather Service.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Service.release.xcconfig"; path = "Target Support Files/Pods-Weather Service/Pods-Weather Service.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -419,6 +421,7 @@
 			children = (
 				1FE1C200261B314400850090 /* Extensions.swift */,
 				1FE1C245261BA4AC00850090 /* ShimmeringEffect.swift */,
+				1FE1C24D261CA33800850090 /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				1FE1C167261B08CB00850090 /* SceneDelegate.swift in Sources */,
 				1FE1C219261B603100850090 /* SelectCityController.swift in Sources */,
 				1FE1C1ED261B280500850090 /* CurrentWeatherResponse.swift in Sources */,
+				1FE1C24E261CA33900850090 /* Utilities.swift in Sources */,
 				1FE1C21E261B604700850090 /* SelectCityViewDelegateProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

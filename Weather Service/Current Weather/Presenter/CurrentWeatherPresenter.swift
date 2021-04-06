@@ -24,6 +24,11 @@ class CurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
         self.selectionManager = selectionManager
     }
     
+
+    func fetchNumberOfStoredCities() -> Int? {
+        selectionManager.fetchCitiesInStudy()?.count
+    }
+    
     func fetchWeatherForSeletedCities() {
         
         guard let cities = selectionManager.fetchCitiesInStudy() else {
