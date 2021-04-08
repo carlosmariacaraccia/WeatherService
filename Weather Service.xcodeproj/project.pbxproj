@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F229C18261EF39700265906 /* ExtendedWeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F229C17261EF39700265906 /* ExtendedWeatherController.swift */; };
+		1F229C1C261F059D00265906 /* ExtendedWeatherSupplementaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F229C1B261F059D00265906 /* ExtendedWeatherSupplementaryCell.swift */; };
 		1F584424261CEE24000768B2 /* ExtendedWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F584423261CEE24000768B2 /* ExtendedWeatherResponse.swift */; };
 		1F997916261E2805006C9F13 /* WeatherDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F997915261E2805006C9F13 /* WeatherDetailsPresenterTests.swift */; };
 		1F99791D261E2A62006C9F13 /* WeatherDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99791C261E2A62006C9F13 /* WeatherDetailsPresenter.swift */; };
@@ -75,6 +77,8 @@
 /* Begin PBXFileReference section */
 		07FB523617FE102F97F1A3EC /* Pods-Weather Service.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Service.debug.xcconfig"; path = "Target Support Files/Pods-Weather Service/Pods-Weather Service.debug.xcconfig"; sourceTree = "<group>"; };
 		0C7E751F9125AD2299E15FF8 /* Pods_Weather_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F229C17261EF39700265906 /* ExtendedWeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWeatherController.swift; sourceTree = "<group>"; };
+		1F229C1B261F059D00265906 /* ExtendedWeatherSupplementaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWeatherSupplementaryCell.swift; sourceTree = "<group>"; };
 		1F584423261CEE24000768B2 /* ExtendedWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWeatherResponse.swift; sourceTree = "<group>"; };
 		1F997915261E2805006C9F13 /* WeatherDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		1F99791C261E2A62006C9F13 /* WeatherDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -153,6 +157,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F229C16261EF37C00265906 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F229C17261EF39700265906 /* ExtendedWeatherController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		1F7DD7C8261CCFA2004C22FF /* Weather details tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +198,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1F958C76261F073900538329 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F229C1B261F059D00265906 /* ExtendedWeatherSupplementaryCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F99791A261E2A22006C9F13 /* Extended Weather  */ = {
 			isa = PBXGroup;
 			children = (
+				1F958C76261F073900538329 /* View */,
+				1F229C16261EF37C00265906 /* Controller */,
 				1F997928261E4FEB006C9F13 /* Protocols */,
 				1F99791B261E2A41006C9F13 /* Presenter */,
 			);
@@ -665,6 +687,7 @@
 				1FE1C210261B5FF300850090 /* SelectCityViewPresenter.swift in Sources */,
 				1FE1C1F6261B283D00850090 /* CitySelectionManager.swift in Sources */,
 				1FE1C16F261B08CB00850090 /* Weather_Service.xcdatamodeld in Sources */,
+				1F229C1C261F059D00265906 /* ExtendedWeatherSupplementaryCell.swift in Sources */,
 				1FE1C211261B5FF300850090 /* SelectCityPresenter.swift in Sources */,
 				1F584424261CEE24000768B2 /* ExtendedWeatherResponse.swift in Sources */,
 				1FE1C1E8261B27DE00850090 /* CurrentWeatherViewDelegateProtocol.swift in Sources */,
@@ -683,6 +706,7 @@
 				1FE1C246261BA4AC00850090 /* ShimmeringEffect.swift in Sources */,
 				1FE1C165261B08CB00850090 /* AppDelegate.swift in Sources */,
 				1FE1C1FC261B2FFF00850090 /* CurrrentWeatherCell.swift in Sources */,
+				1F229C18261EF39700265906 /* ExtendedWeatherController.swift in Sources */,
 				1FE1C167261B08CB00850090 /* SceneDelegate.swift in Sources */,
 				1FE1C219261B603100850090 /* SelectCityController.swift in Sources */,
 				1FE1C1ED261B280500850090 /* CurrentWeatherResponse.swift in Sources */,

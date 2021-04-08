@@ -91,7 +91,7 @@ class CurrentWeatherCell:UICollectionViewCell {
         
         return view
     }()
-    
+        
     
     // MARK:- Helper functions
 
@@ -129,6 +129,7 @@ class CurrentWeatherCell:UICollectionViewCell {
 
     
     // MARK:- Initialization of the views
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -142,6 +143,8 @@ class CurrentWeatherCell:UICollectionViewCell {
         
         addSubview(loadingIconCityWeatherView)
         loadingIconCityWeatherView.anchor(top: topAnchor, left: leftContainerView.rightAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
+        
+            
     }
     
     

@@ -10,6 +10,7 @@ import CoreData
 
 private let reuseIdentifier = "reuseIdentifier"
 
+
 class CurrentWeatherController:UICollectionViewController {
     
     
@@ -17,7 +18,11 @@ class CurrentWeatherController:UICollectionViewController {
     
     
     var currentWeatherPresenter:CurrentWeatherPresenterProtocol?
-    var currentWeathers:[CurrentWeatherResponse]?
+    var currentWeathers:[CurrentWeatherResponse]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     lazy var actionButton:UIButton = {
         let button = UIButton(type: .system)
@@ -41,9 +46,16 @@ class CurrentWeatherController:UICollectionViewController {
     override func viewDidLoad() {
         configureCollectionView()
         configureUI()
+        callPresenter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
+    
+    // MARK:- Helper functions
+    
+    private func callPresenter() {
         if currentWeatherPresenter != nil {
             currentWeatherPresenter?.fetchWeatherForSeletedCities()
         } else {
@@ -54,11 +66,7 @@ class CurrentWeatherController:UICollectionViewController {
             currentWeatherPresenter = CurrentWeatherPresenter(webService: webservice, viewDelegate: self, selectionManager: selectionManager)
             currentWeatherPresenter?.fetchWeatherForSeletedCities()
         }
-
     }
-        
-    // MARK:- Helper functions
-    
     
     func configureCollectionView() {
         collectionView.backgroundColor = .background
@@ -95,22 +103,36 @@ extension CurrentWeatherController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
+        cell.loadingDescriptionCityWeatherView.startShimmeringAnimation()
+        cell.loadingIconCityWeatherView.startShimmeringAnimation()
+        cell.loadingMainCityWeatherView.startShimmeringAnimation()
         if let climateInCities = currentWeathers {
+            cell.loadingMainCityWeatherView.stopShimmeringAnimation()
             cell.loadingIconCityWeatherView.stopShimmeringAnimation()
             cell.loadingDescriptionCityWeatherView.stopShimmeringAnimation()
-            cell.loadingMainCityWeatherView.stopShimmeringAnimation()
             cell.cityWeather = climateInCities[indexPath.row]
-        } else {
-            cell.loadingIconCityWeatherView.startShimmeringAnimation()
-            cell.loadingDescriptionCityWeatherView.startShimmeringAnimation()
-            cell.loadingMainCityWeatherView.startShimmeringAnimation()
         }
         return cell
     }
 }
 
+// MARK:- UICollectionViewControllerDelegate
 
-// MARK:- UICollectionViewDelegateFlowLayour
+extension CurrentWeatherController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let weathers = currentWeathers else { return }
+        let selectedWeather = weathers[indexPath.row]
+        let layout = UICollectionViewFlowLayout()
+        let controller = ExtendedWeatherController(collectionViewLayout: layout)
+        controller.currentWeather = selectedWeather
+        navigationController?.pushViewController(controller, animated: true)        
+    }
+}
+
+
+
+// MARK:- UICollectionViewDelegateFlowLayout
 
 extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     
@@ -132,11 +154,10 @@ extension CurrentWeatherController: CurrentWeatherViewDelegateProtocol {
     
     func didReceiveSuccessfullResponse(currentWeatherObjects: [CurrentWeatherResponse]) {
         let numberOfCitiesStored = currentWeatherPresenter?.fetchNumberOfStoredCities()
+        // this is done to make all the cities appear toghether in the collection view.
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
             if numberOfCitiesStored == currentWeatherObjects.count {
                 self.currentWeathers = currentWeatherObjects
-                self.collectionView.reloadData()
             }
         }
     }
@@ -144,9 +165,5 @@ extension CurrentWeatherController: CurrentWeatherViewDelegateProtocol {
     func didReceiveFailure(currentWeatherError: CurrentWeatherError) {
         //TODO: - Handle appropiately the error with an alert controller
     }
-    
-    
 }
-
-
 
