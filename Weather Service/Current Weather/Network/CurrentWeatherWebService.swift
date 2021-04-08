@@ -51,4 +51,40 @@ class CurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
             }
         }.resume()
     }
+    
+    func fetchExtendedWeather(forCityId cityId:String, completionHandler:@escaping(Result<ExtendedWeatherResponse,CurrentWeatherError>)->Void) {
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.openweathermap.org"
+        components.path = "/data/2.5/forecast"
+        let queryItem1 = URLQueryItem(name: "id", value: cityId)
+        let queryItem2 = URLQueryItem(name: "lang", value: "es")
+        let queryItem3 = URLQueryItem(name: "units", value: "metric")
+        let queryItem4 = URLQueryItem(name: "appid", value: "3deb5e13d6f1b909acd03720e9822e54")
+        components.queryItems = [queryItem1, queryItem2, queryItem3, queryItem4]
+        
+        //TODO: - Create a function to take out the url components code out of the request funtion (it has nothid to do with the request so it can go away. Besides I need only one paramenter, so I can make it safe.
+        
+        guard let url = components.url else {
+            completionHandler(.failure(CurrentWeatherError.ErrorCreatingURL(description: "Could not create the url.")))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        urlSession.dataTask(with: request) { (data, response, error) in
+            if let safeData = data {
+                do {
+                    let forecast = try JSONDecoder().decode(ExtendedWeatherResponse.self, from: safeData)
+                    completionHandler(Result.success(forecast))
+                } catch let error {
+                    completionHandler(.failure(CurrentWeatherError.ErrorCastingResopnse(description: error.localizedDescription)))
+                }
+            } else {
+                completionHandler(.failure(CurrentWeatherError.ErrorInResponse(description: "There was a problem in the http response.")))
+            }
+        }.resume()
+    }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F584424261CEE24000768B2 /* ExtendedWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F584423261CEE24000768B2 /* ExtendedWeatherResponse.swift */; };
+		1F997916261E2805006C9F13 /* WeatherDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F997915261E2805006C9F13 /* WeatherDetailsPresenterTests.swift */; };
+		1F99791D261E2A62006C9F13 /* WeatherDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F99791C261E2A62006C9F13 /* WeatherDetailsPresenter.swift */; };
+		1F997923261E4FAD006C9F13 /* MocksWeatherDetailsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F997922261E4FAD006C9F13 /* MocksWeatherDetailsViewDelegate.swift */; };
+		1F99792A261E500C006C9F13 /* WeatherDetailsViewDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F997929261E500C006C9F13 /* WeatherDetailsViewDelegateProtocol.swift */; };
 		1FE1C165261B08CB00850090 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C164261B08CB00850090 /* AppDelegate.swift */; };
 		1FE1C167261B08CB00850090 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C166261B08CB00850090 /* SceneDelegate.swift */; };
 		1FE1C16F261B08CB00850090 /* Weather_Service.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1C16D261B08CB00850090 /* Weather_Service.xcdatamodeld */; };
@@ -70,6 +75,11 @@
 /* Begin PBXFileReference section */
 		07FB523617FE102F97F1A3EC /* Pods-Weather Service.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Service.debug.xcconfig"; path = "Target Support Files/Pods-Weather Service/Pods-Weather Service.debug.xcconfig"; sourceTree = "<group>"; };
 		0C7E751F9125AD2299E15FF8 /* Pods_Weather_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F584423261CEE24000768B2 /* ExtendedWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedWeatherResponse.swift; sourceTree = "<group>"; };
+		1F997915261E2805006C9F13 /* WeatherDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsPresenterTests.swift; sourceTree = "<group>"; };
+		1F99791C261E2A62006C9F13 /* WeatherDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsPresenter.swift; sourceTree = "<group>"; };
+		1F997922261E4FAD006C9F13 /* MocksWeatherDetailsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocksWeatherDetailsViewDelegate.swift; sourceTree = "<group>"; };
+		1F997929261E500C006C9F13 /* WeatherDetailsViewDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewDelegateProtocol.swift; sourceTree = "<group>"; };
 		1FE1C161261B08CB00850090 /* Weather Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Service.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE1C164261B08CB00850090 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE1C166261B08CB00850090 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,11 +153,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F7DD7C8261CCFA2004C22FF /* New Group */ = {
+		1F7DD7C8261CCFA2004C22FF /* Weather details tests */ = {
+			isa = PBXGroup;
+			children = (
+				1F7DD7CB261CD02D004C22FF /* Controller */,
+				1F7DD7CA261CD027004C22FF /* Mocks */,
+				1F7DD7C9261CD01E004C22FF /* Presenter */,
+			);
+			path = "Weather details tests";
+			sourceTree = "<group>";
+		};
+		1F7DD7C9261CD01E004C22FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F997915261E2805006C9F13 /* WeatherDetailsPresenterTests.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1F7DD7CA261CD027004C22FF /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				1F997922261E4FAD006C9F13 /* MocksWeatherDetailsViewDelegate.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		1F7DD7CB261CD02D004C22FF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "New Group";
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1F99791A261E2A22006C9F13 /* Extended Weather  */ = {
+			isa = PBXGroup;
+			children = (
+				1F997928261E4FEB006C9F13 /* Protocols */,
+				1F99791B261E2A41006C9F13 /* Presenter */,
+			);
+			path = "Extended Weather ";
+			sourceTree = "<group>";
+		};
+		1F99791B261E2A41006C9F13 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F99791C261E2A62006C9F13 /* WeatherDetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1F997928261E4FEB006C9F13 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1F997929261E500C006C9F13 /* WeatherDetailsViewDelegateProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1FE1C158261B08CB00850090 = {
@@ -176,6 +237,7 @@
 				1FE1C164261B08CB00850090 /* AppDelegate.swift */,
 				1FE1C166261B08CB00850090 /* SceneDelegate.swift */,
 				1FE1C1FF261B311D00850090 /* Utilities */,
+				1F99791A261E2A22006C9F13 /* Extended Weather  */,
 				1FE1C1A6261B22E200850090 /* Select City */,
 				1FE1C19E261B225C00850090 /* Current Weather */,
 				1FE1C170261B08D100850090 /* Assets.xcassets */,
@@ -192,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE1C189261B215500850090 /* Info.plist */,
-				1F7DD7C8261CCFA2004C22FF /* New Group */,
+				1F7DD7C8261CCFA2004C22FF /* Weather details tests */,
 				1FE1C199261B21FE00850090 /* Select city tests */,
 				1FE1C193261B21A900850090 /* Current Weather Tests */,
 			);
@@ -351,6 +413,7 @@
 				1FE1C1EC261B280500850090 /* CurrentWeatherError.swift */,
 				1FE1C1EB261B280500850090 /* CurrentWeatherResponse.swift */,
 				1FE1C20A261B4E2200850090 /* ImportingModel.swift */,
+				1F584423261CEE24000768B2 /* ExtendedWeatherResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -603,8 +666,11 @@
 				1FE1C1F6261B283D00850090 /* CitySelectionManager.swift in Sources */,
 				1FE1C16F261B08CB00850090 /* Weather_Service.xcdatamodeld in Sources */,
 				1FE1C211261B5FF300850090 /* SelectCityPresenter.swift in Sources */,
+				1F584424261CEE24000768B2 /* ExtendedWeatherResponse.swift in Sources */,
 				1FE1C1E8261B27DE00850090 /* CurrentWeatherViewDelegateProtocol.swift in Sources */,
 				1FE1C1DE261B27B200850090 /* CurrentWeatherPresenter.swift in Sources */,
+				1F99791D261E2A62006C9F13 /* WeatherDetailsPresenter.swift in Sources */,
+				1F99792A261E500C006C9F13 /* WeatherDetailsViewDelegateProtocol.swift in Sources */,
 				1FE1C1EE261B280500850090 /* CurrentWeatherError.swift in Sources */,
 				1FE1C242261B8A3200850090 /* CurrentWeatherCellPresenter.swift in Sources */,
 				1FE1C1E6261B27DE00850090 /* CurrentWeatherPresenterProtocol.swift in Sources */,
@@ -631,6 +697,7 @@
 			files = (
 				1FE1C1B6261B26CD00850090 /* MainControllerTests.swift in Sources */,
 				1FE1C1C2261B271700850090 /* MockCurrentWeatherPresenter.swift in Sources */,
+				1F997916261E2805006C9F13 /* WeatherDetailsPresenterTests.swift in Sources */,
 				1FE1C1C0261B271700850090 /* MockCurrentWeatherWebService.swift in Sources */,
 				1FE1C1D8261B276E00850090 /* ExtensionSelectionCityManagerTests.swift in Sources */,
 				1FE1C225261B607E00850090 /* SelectionCityStorageTests.swift in Sources */,
@@ -641,6 +708,7 @@
 				1FE1C1C9261B273C00850090 /* CurrentWeatherPresenterExtensin.swift in Sources */,
 				1FE1C1BE261B271700850090 /* MockCitySelectionManager.swift in Sources */,
 				1FE1C1BF261B271700850090 /* MockCurrentWeatherViewDelegate.swift in Sources */,
+				1F997923261E4FAD006C9F13 /* MocksWeatherDetailsViewDelegate.swift in Sources */,
 				1FE1C237261B60CE00850090 /* SelectCityControllerTests.swift in Sources */,
 				1FE1C1C1261B271700850090 /* MockUrlProtocol.swift in Sources */,
 				1FE1C22A261B609400850090 /* ExtensionSelectCityPresenterTests.swift in Sources */,

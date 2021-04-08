@@ -135,6 +135,8 @@ class CurrentWeatherCell:UICollectionViewCell {
         
         backgroundColor = .white
         
+        layer.cornerRadius = 10
+        
         addSubview(leftContainerView)
         leftContainerView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 8, height: 30)
         

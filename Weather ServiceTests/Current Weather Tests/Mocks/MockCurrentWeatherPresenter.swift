@@ -21,5 +21,10 @@ class MockCurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
         isFetchWeatherForSelectedCitiesCalled = true
     }
     
+    func fetchNumberOfStoredCities() -> Int? {
+        return nil
+    }
+    
+    
     
 }

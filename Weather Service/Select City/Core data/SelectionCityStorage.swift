@@ -24,6 +24,7 @@ class SelectionCityStorage:SelectionCityStorageProtocol {
         
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         fetch.fetchLimit = 30
+        fetch.returnsObjectsAsFaults = false
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", string)
         fetch.predicate = predicate
         do {

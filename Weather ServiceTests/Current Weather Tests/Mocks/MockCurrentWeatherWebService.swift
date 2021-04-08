@@ -10,12 +10,18 @@ import Foundation
 
 class MockCurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
     
+    var isFetchWeatherDetailsCalled = false
+    
     var isFetchCurrentWeatherCalled:Bool = false
     
     var failureErrorPassed:CurrentWeatherError?
     
+    var extendedWeatherError:CurrentWeatherError?
+    
     func fetchCurrentWeather(forCityId:String, completionHandler: @escaping (Result<CurrentWeatherResponse, CurrentWeatherError>) -> Void) {
+        
         isFetchCurrentWeatherCalled = true
+        
         if let responseError = failureErrorPassed {
             completionHandler(.failure(responseError))
         } else {
@@ -23,4 +29,17 @@ class MockCurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
             completionHandler(.success(currentWeatherResponse))
         }
     }
+    
+    func fetchExtendedWeather(forCityId cityId: String, completionHandler: @escaping (Result<ExtendedWeatherResponse, CurrentWeatherError>) -> Void) {
+        
+        isFetchWeatherDetailsCalled = true
+        
+        if let extendedWeatherError = extendedWeatherError {
+            completionHandler(.failure(extendedWeatherError))
+        } else {
+            let extendedWeatherResponse = ExtendedWeatherResponse(cod: 200)
+            completionHandler(.success(extendedWeatherResponse))
+        }
+    }
+
 }

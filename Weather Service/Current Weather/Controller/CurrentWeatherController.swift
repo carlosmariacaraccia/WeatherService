@@ -43,7 +43,7 @@ class CurrentWeatherController:UICollectionViewController {
         configureUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if currentWeatherPresenter != nil {
             currentWeatherPresenter?.fetchWeatherForSeletedCities()
         } else {
@@ -54,14 +54,14 @@ class CurrentWeatherController:UICollectionViewController {
             currentWeatherPresenter = CurrentWeatherPresenter(webService: webservice, viewDelegate: self, selectionManager: selectionManager)
             currentWeatherPresenter?.fetchWeatherForSeletedCities()
         }
+
     }
-    
-    
+        
     // MARK:- Helper functions
     
     
     func configureCollectionView() {
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .background
         collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
@@ -115,7 +115,11 @@ extension CurrentWeatherController {
 extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width - 30, height: 150)
+        CGSize(width: view.frame.width - 30, height: 110)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
     }
 }
 
