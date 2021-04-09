@@ -12,7 +12,7 @@ class MockCurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
 
     var isFetchWeatherForSelectedCitiesCalled:Bool = false
     
-    required init(webService: CurrentWeatherWebServiceProtocol, viewDelegate: CurrentWeatherViewDelegateProtocol, selectionManager: CitySelectionManagerProtocol) {
+    required init(webService: WeatherWebServiceProtocol, viewDelegate: CurrentWeatherViewDelegateProtocol, selectionManager: CitySelectionManagerProtocol) {
         
     }
     

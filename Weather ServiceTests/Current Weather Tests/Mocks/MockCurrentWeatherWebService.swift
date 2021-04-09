@@ -8,7 +8,7 @@
 import Foundation
 @testable import Weather_Service
 
-class MockCurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
+class MockCurrentWeatherWebService:WeatherWebServiceProtocol {
     
     var isFetchWeatherDetailsCalled = false
     

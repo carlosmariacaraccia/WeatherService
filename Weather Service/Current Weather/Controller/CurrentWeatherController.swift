@@ -61,7 +61,7 @@ class CurrentWeatherController:UICollectionViewController {
         } else {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let cont = appDelegate.persistentContainer
-            let webservice = CurrentWeatherWebService()
+            let webservice = WeatherWebService()
             let selectionManager = CitySelectionManager(container: cont)
             currentWeatherPresenter = CurrentWeatherPresenter(webService: webservice, viewDelegate: self, selectionManager: selectionManager)
             currentWeatherPresenter?.fetchWeatherForSeletedCities()

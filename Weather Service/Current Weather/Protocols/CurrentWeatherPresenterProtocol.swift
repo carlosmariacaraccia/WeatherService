@@ -10,7 +10,7 @@ import Foundation
 
 protocol CurrentWeatherPresenterProtocol:AnyObject {
     
-    init(webService:CurrentWeatherWebServiceProtocol, viewDelegate:CurrentWeatherViewDelegateProtocol, selectionManager:CitySelectionManagerProtocol)
+    init(webService:WeatherWebServiceProtocol, viewDelegate:CurrentWeatherViewDelegateProtocol, selectionManager:CitySelectionManagerProtocol)
     
     func fetchNumberOfStoredCities() -> Int?
     func fetchWeatherForSeletedCities()

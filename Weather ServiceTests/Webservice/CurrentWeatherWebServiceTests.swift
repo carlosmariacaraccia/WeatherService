@@ -29,7 +29,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
         let cityId = "1950702"
         let jsonString = "{\"cod\":200}"
         MockUrlProtocol.stubResponseData = jsonString.data(using: .utf8)
-        let sut = CurrentWeatherWebService(urlSession: session)
+        let sut = WeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
         sut.fetchCurrentWeather(forCityId:cityId) { result in
             
@@ -51,7 +51,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
         let cityId = "1950702"
         let jsonString = "{\"cod\":\"200\"}"
         MockUrlProtocol.stubResponseData = jsonString.data(using: .utf8)
-        let sut = CurrentWeatherWebService(urlSession: session)
+        let sut = WeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
         sut.fetchCurrentWeather(forCityId: cityId) { result in
             
@@ -71,7 +71,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
         
         let cityId = "xxxxxx"
         let returningError = CurrentWeatherError.ErrorInResponse(description: "There was a problem in the http response.")
-        let sut = CurrentWeatherWebService(urlSession: session)
+        let sut = WeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
         sut.fetchCurrentWeather(forCityId: cityId) { result in
             
@@ -92,7 +92,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
         let cityId = "1950702"
         let jsonString = "{\"cod\":\"200\"}"
         MockUrlProtocol.stubResponseData = jsonString.data(using: .utf8)
-        let sut = CurrentWeatherWebService(urlSession: session)
+        let sut = WeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
         
         sut.fetchExtendedWeather(forCityId: cityId) { result in
@@ -113,7 +113,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
         
         let cityId = "1950702"
         let returningError = CurrentWeatherError.ErrorInResponse(description: "There was a problem in the http response.")
-        let sut = CurrentWeatherWebService(urlSession: session)
+        let sut = WeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
         sut.fetchExtendedWeather(forCityId: cityId) { result in
             

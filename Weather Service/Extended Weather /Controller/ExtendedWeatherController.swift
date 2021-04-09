@@ -116,7 +116,7 @@ class ExtendedWeatherController:UIViewController {
         if let presenter = presenter {
             presenter.fetchDetailedWeather(forCityId: "\(cityId)")
         } else {
-            let webservice = CurrentWeatherWebService()
+            let webservice = WeatherWebService()
             let presenter = WeatherDetailsPresenter(webservice: webservice, viewDelegate: self)
             presenter.fetchDetailedWeather(forCityId: "\(cityId)")
         }

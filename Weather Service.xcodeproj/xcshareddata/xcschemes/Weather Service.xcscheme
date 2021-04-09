@@ -48,6 +48,11 @@
                BlueprintName = "Weather ServiceTests"
                ReferencedContainer = "container:Weather Service.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "MainControllerTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

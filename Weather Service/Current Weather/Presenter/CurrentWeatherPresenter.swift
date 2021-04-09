@@ -10,7 +10,7 @@ import CoreData
 
 class CurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
     
-    private let webService:CurrentWeatherWebServiceProtocol
+    private let webService:WeatherWebServiceProtocol
     private let viewDelegate:CurrentWeatherViewDelegateProtocol
     private let selectionManager:CitySelectionManagerProtocol
     
@@ -18,7 +18,7 @@ class CurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
     
     private var outerError:CurrentWeatherError?
     
-    required init(webService:CurrentWeatherWebServiceProtocol, viewDelegate:CurrentWeatherViewDelegateProtocol, selectionManager:CitySelectionManagerProtocol) {
+    required init(webService:WeatherWebServiceProtocol, viewDelegate:CurrentWeatherViewDelegateProtocol, selectionManager:CitySelectionManagerProtocol) {
         self.webService = webService
         self.viewDelegate = viewDelegate
         self.selectionManager = selectionManager

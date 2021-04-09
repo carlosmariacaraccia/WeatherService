@@ -1,6 +1,6 @@
 //
-//  CurrentWeatherWebService.swift
-//  OpenWeatherApp
+//  WeatherWebService.swift
+//  Weather service
 //
 //  Created by Carlos Caraccia on 3/29/21.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class CurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
+class WeatherWebService:WeatherWebServiceProtocol {
     
     private var urlSession:URLSession
     

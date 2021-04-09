@@ -10,10 +10,10 @@ import Foundation
 
 class WeatherDetailsPresenter {
     
-    private let webservice:CurrentWeatherWebServiceProtocol
+    private let webservice:WeatherWebServiceProtocol
     private let viewDelegate:WeatherDetailsViewDelegateProtocol
     
-    init(webservice:CurrentWeatherWebServiceProtocol, viewDelegate:WeatherDetailsViewDelegateProtocol) {
+    init(webservice:WeatherWebServiceProtocol, viewDelegate:WeatherDetailsViewDelegateProtocol) {
         self.webservice = webservice
         self.viewDelegate = viewDelegate
     }
