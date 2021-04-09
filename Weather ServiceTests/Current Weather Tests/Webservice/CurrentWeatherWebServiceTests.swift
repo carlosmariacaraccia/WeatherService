@@ -90,7 +90,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
     func testCurrentWeatherWebService_WhenFetchExtendedWeatherReceivesASuccessfullResponse_CallsSuccess() {
         
         let cityId = "1950702"
-        let jsonString = "{\"cod\":200}"
+        let jsonString = "{\"cod\":\"200\"}"
         MockUrlProtocol.stubResponseData = jsonString.data(using: .utf8)
         let sut = CurrentWeatherWebService(urlSession: session)
         let myExpectation = expectation(description: "Current weather webservice expectation.")
@@ -101,7 +101,7 @@ class CurrentWeatherWebServiceTests: XCTestCase {
                 print(error)
                 XCTFail("The request returned a failure result when it should have returned a success")
             case .success(let response):
-                XCTAssertEqual(response.cod, 200, "The response cod property should be equal to 200, but it was not.")
+                XCTAssertEqual(response.cod, "200", "The response cod property should be equal to 200, but it was not.")
                 myExpectation.fulfill()
             }
         }

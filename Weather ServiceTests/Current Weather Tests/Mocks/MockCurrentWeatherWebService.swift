@@ -37,7 +37,7 @@ class MockCurrentWeatherWebService:CurrentWeatherWebServiceProtocol {
         if let extendedWeatherError = extendedWeatherError {
             completionHandler(.failure(extendedWeatherError))
         } else {
-            let extendedWeatherResponse = ExtendedWeatherResponse(cod: 200)
+            let extendedWeatherResponse = ExtendedWeatherResponse(cod: "200", message: nil, cnt: nil, list: nil, city: nil)
             completionHandler(.success(extendedWeatherResponse))
         }
     }

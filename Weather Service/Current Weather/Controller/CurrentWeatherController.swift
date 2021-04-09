@@ -123,8 +123,7 @@ extension CurrentWeatherController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let weathers = currentWeathers else { return }
         let selectedWeather = weathers[indexPath.row]
-        let layout = UICollectionViewFlowLayout()
-        let controller = ExtendedWeatherController(collectionViewLayout: layout)
+        let controller = ExtendedWeatherController()
         controller.currentWeather = selectedWeather
         navigationController?.pushViewController(controller, animated: true)        
     }
@@ -141,7 +140,11 @@ extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+        UIEdgeInsets(top: 24, left: 12, bottom: 0, right: 12)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        10
     }
 }
 
