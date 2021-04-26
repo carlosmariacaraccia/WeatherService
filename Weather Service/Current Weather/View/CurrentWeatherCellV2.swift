@@ -99,7 +99,7 @@ class CurrentWeatherCellV2:UICollectionViewCell {
         guard let lat = currentWeather?.coord?.lat else { return }
         guard let lon = currentWeather?.coord?.lon else { return }
         let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: location, latitudinalMeters: 10000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
     }
     
@@ -199,6 +199,7 @@ class CurrentWeatherCellV2:UICollectionViewCell {
         return mapView
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
@@ -208,6 +209,7 @@ class CurrentWeatherCellV2:UICollectionViewCell {
         mapStackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
         
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

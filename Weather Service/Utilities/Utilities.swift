@@ -47,7 +47,6 @@ class Utilities {
             } else {
                 return false
             }
-            
         } catch let fetchingErrors {
             fatalError("The app could not retrieve the data from the store. Please contact the developer or owner. \(fetchingErrors). ")
         }

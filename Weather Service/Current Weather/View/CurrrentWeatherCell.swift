@@ -12,16 +12,16 @@ class CurrentWeatherCell:UICollectionViewCell {
     
     var cityWeather:CurrentWeatherResponse? {
         didSet {
-            guard let cityWeather = cityWeather else { return }
-            removeViews()
-            addLabelsAndIcons()
-            loadString(cityWeather: cityWeather)
+//            guard let cityWeather = cityWeather else { return }
+//            removeViews()
+//            addLabelsAndIcons()
+//            loadString(cityWeather: cityWeather)
         }
     }
     
     // MARK:- Dummy properties to be seen when the view is being loaded
 
-    lazy var loadingIconCityWeatherView:UIView = {
+     var loadingIconCityWeatherView:UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         view.setDimensions(width: 92, height: 92)
@@ -130,7 +130,10 @@ class CurrentWeatherCell:UICollectionViewCell {
     
     // MARK:- Initialization of the views
     
-
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         

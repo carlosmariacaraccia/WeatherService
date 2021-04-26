@@ -53,6 +53,13 @@ class CurrentWeatherController:UICollectionViewController {
         callPresenter()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        callPresenter()
+        collectionView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         collectionView.reloadData()
     }
@@ -74,8 +81,8 @@ class CurrentWeatherController:UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = .background
-        //collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.register(CurrentWeatherCellV2.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //collectionView.register(CurrentWeatherCellV2.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     
@@ -108,22 +115,24 @@ extension CurrentWeatherController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCellV2
-        if let climateInCities = currentWeathers {
-            let weather = climateInCities[indexPath.row]
-            cell.delegate = self
-            cell.currentWeather = climateInCities[indexPath.row]
-            if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
-                UIView.animate(withDuration: 0.5) {
-                    cell.addDetailsButton.setTitle("HIDE DETAILS", for: .normal)
-                    cell.mapView.isHidden = false
-                    cell.setLocation()
-                }
-            } else {
-                cell.addDetailsButton.setTitle("SHOW DETAILS", for: .normal)
-                cell.mapView.isHidden = true
-            }
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
+
+        
+//        if let climateInCities = currentWeathers {
+//            let weather = climateInCities[indexPath.row]
+//            cell.delegate = self
+//            cell.currentWeather = climateInCities[indexPath.row]
+//            if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
+//                UIView.animate(withDuration: 0.5) {
+//                    cell.addDetailsButton.setTitle("HIDE DETAILS", for: .normal)
+//                    cell.mapView.isHidden = false
+//                    cell.setLocation()
+//                }
+//            } else {
+//                cell.addDetailsButton.setTitle("SHOW DETAILS", for: .normal)
+//                cell.mapView.isHidden = true
+//            }
+//        }
         return cell
     }
 }
