@@ -32,5 +32,24 @@ class Utilities {
             }
         }
     }
-
+    
+    /// Function to check wheather the cities are loaded or not in the store
+    /// - Parameter container: the persistent container where the store is deffined.
+    /// - Returns: bool indicating whether the is data or not.
+    static func checkForDataStorage(container:NSPersistentContainer) -> Bool {
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
+        let predicate = NSPredicate(format: "name == %@", "Buenos Aires")
+        fetch.predicate = predicate
+        do {
+            let results = try container.viewContext.fetch(fetch)
+            if results.count > 0 {
+                return true
+            } else {
+                return false
+            }
+            
+        } catch let fetchingErrors {
+            fatalError("The app could not retrieve the data from the store. Please contact the developer or owner. \(fetchingErrors). ")
+        }
+    }
 }

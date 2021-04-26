@@ -21,8 +21,10 @@ struct CurrentWeatherResponse:Decodable {
     let timezone, id: Int?
     let name: String?
     let cod: Int?
+    let coord:Coordinates?
     
 }
+
 
 
 // MARK: - Clouds

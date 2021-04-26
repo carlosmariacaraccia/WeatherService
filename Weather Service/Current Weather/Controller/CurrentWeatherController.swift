@@ -16,7 +16,11 @@ class CurrentWeatherController:UICollectionViewController {
     
     // MARK:- Properties
     
-    
+    var tappedWeathers = [CurrentWeatherResponse]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     var currentWeatherPresenter:CurrentWeatherPresenterProtocol?
     var currentWeathers:[CurrentWeatherResponse]? {
         didSet {
@@ -70,8 +74,10 @@ class CurrentWeatherController:UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = .background
-        collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(CurrentWeatherCellV2.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
+    
     
     func configureUI() {
         view.addSubview(actionButton)
@@ -102,15 +108,21 @@ extension CurrentWeatherController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
-        cell.loadingDescriptionCityWeatherView.startShimmeringAnimation()
-        cell.loadingIconCityWeatherView.startShimmeringAnimation()
-        cell.loadingMainCityWeatherView.startShimmeringAnimation()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCellV2
         if let climateInCities = currentWeathers {
-            cell.loadingMainCityWeatherView.stopShimmeringAnimation()
-            cell.loadingIconCityWeatherView.stopShimmeringAnimation()
-            cell.loadingDescriptionCityWeatherView.stopShimmeringAnimation()
-            cell.cityWeather = climateInCities[indexPath.row]
+            let weather = climateInCities[indexPath.row]
+            cell.delegate = self
+            cell.currentWeather = climateInCities[indexPath.row]
+            if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
+                UIView.animate(withDuration: 0.5) {
+                    cell.addDetailsButton.setTitle("HIDE DETAILS", for: .normal)
+                    cell.mapView.isHidden = false
+                    cell.setLocation()
+                }
+            } else {
+                cell.addDetailsButton.setTitle("SHOW DETAILS", for: .normal)
+                cell.mapView.isHidden = true
+            }
         }
         return cell
     }
@@ -136,7 +148,12 @@ extension CurrentWeatherController {
 extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width - 30, height: 110)
+        // check if the weather cell was been tapped
+        if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
+            return CGSize(width: view.frame.width - 24, height: 450)
+        } else {
+            return CGSize(width: view.frame.width - 24, height: 150)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -146,6 +163,18 @@ extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         10
     }
+}
+
+extension CurrentWeatherController:CurrentWeatherCellProtocol {
+    func didTapExpanse(weather: CurrentWeatherResponse) {
+        if tappedWeathers.contains(where: { $0.id == weather.id } ) {
+            tappedWeathers.removeAll(where: {$0.id == weather.id })
+        } else {
+            tappedWeathers.append(weather)
+        }
+    }
+    
+    
 }
 
 

@@ -24,7 +24,7 @@ struct CityResopnse:Decodable {
 }
 
 // MARK: - Coord
-struct Coordinates:Decodable {
+struct Coordinates: Decodable {
     let lat, lon: Double?
 }
 
