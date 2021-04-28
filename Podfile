@@ -7,4 +7,5 @@ target 'Weather Service' do
 
   # Pods for Weather Service
   pod 'SDWebImage', '~> 5.0'
+  pod 'ShimmerSwift'
 end

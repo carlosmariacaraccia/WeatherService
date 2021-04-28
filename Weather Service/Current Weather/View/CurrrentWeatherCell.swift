@@ -7,15 +7,20 @@
 
 import UIKit
 import SDWebImage
+import ShimmerSwift
 
 class CurrentWeatherCell:UICollectionViewCell {
     
     var cityWeather:CurrentWeatherResponse? {
         didSet {
-//            guard let cityWeather = cityWeather else { return }
+            guard let cityWeather = cityWeather else { return }
+            // bring the views to the front and stop the shimmer view
+//            loadingMainCityShimmeringView.isHidden = true
+            leftContainerView.bringSubviewToFront(cityLabel)
+            leftContainerView.sendSubviewToBack(loadingMainCityShimmeringView)
 //            removeViews()
 //            addLabelsAndIcons()
-//            loadString(cityWeather: cityWeather)
+            loadString(cityWeather: cityWeather)
         }
     }
     
@@ -24,9 +29,18 @@ class CurrentWeatherCell:UICollectionViewCell {
      var loadingIconCityWeatherView:UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        view.setDimensions(width: 92, height: 92)
-        view.layer.cornerRadius = 5
         return view
+    }()
+    
+    lazy var loadingIconCityWeatherShimmerView:ShimmeringView = {
+        let shimmer = ShimmeringView()
+        shimmer.contentView = loadingIconCityWeatherView
+        shimmer.setDimensions(width: 92, height: 92)
+        shimmer.layer.cornerRadius = 8
+        shimmer.isShimmering = true
+        shimmer.shimmerSpeed = 50
+
+        return shimmer
     }()
     
     lazy var loadingMainCityWeatherView:UIView = {
@@ -35,6 +49,14 @@ class CurrentWeatherCell:UICollectionViewCell {
         return view
     }()
     
+    lazy var loadingMainCityShimmeringView:ShimmeringView = {
+        let shimmer = ShimmeringView()
+        shimmer.contentView = loadingMainCityWeatherView
+        shimmer.isShimmering = true
+        shimmer.shimmerSpeed = 50
+        return shimmer
+    }()
+
     
     lazy var loadingDescriptionCityWeatherView:UIView = {
         let view = UIView()
@@ -42,14 +64,31 @@ class CurrentWeatherCell:UICollectionViewCell {
         return view
     }()
     
+    
+    lazy var loadingDescriptionCityShimmerView:ShimmeringView = {
+        let shimmer = ShimmeringView()
+        
+        shimmer.contentView = loadingDescriptionCityWeatherView
+        shimmer.isShimmering = true
+        shimmer.shimmerSpeed = 50
+        return shimmer
+    }()
+    
+    
     private lazy var leftContainerView:UIView = {
         let view = UIView()
         
-        view.addSubview(loadingMainCityWeatherView)
-        loadingMainCityWeatherView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 40)
+        view.addSubview(cityLabel)
+//        cityLabel.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 40)
         
-        view.addSubview(loadingDescriptionCityWeatherView)
-        loadingDescriptionCityWeatherView.anchor(top: loadingMainCityWeatherView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 20)
+        view.addSubview(loadingMainCityShimmeringView)
+        loadingMainCityShimmeringView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 40)
+        
+        view.addSubview(descriptionLabel)
+//        descriptionLabel.anchor(top: descriptionLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 20)
+
+        view.addSubview(loadingDescriptionCityShimmerView)
+        loadingDescriptionCityShimmerView.anchor(top: loadingMainCityShimmeringView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, height: 20)
         
         return view
     }()
@@ -60,6 +99,7 @@ class CurrentWeatherCell:UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir Next", size: 15)
         label.numberOfLines = 0
+        label.backgroundColor = .white
         return label
     }()
     
@@ -80,6 +120,7 @@ class CurrentWeatherCell:UICollectionViewCell {
         return iv
     }()
     
+
     private lazy var loadedLeftContainerView:UIView = {
         let view = UIView()
         
@@ -117,23 +158,19 @@ class CurrentWeatherCell:UICollectionViewCell {
         
         let name = cityWeather.name ?? "No name in city weather"
         let temp = cityWeather.main?.temp ?? 0.00
-        let description = cityWeather.weather?.first?.description ?? ""
+//        let description = cityWeather.weather?.first?.description ?? ""
         cityLabel.text = name + ", \(temp)ºC"
-        descriptionLabel.text = description
-        let im = cityWeather.weather?.first?.icon ?? ""
-        let imageStr = "http://openweathermap.org/img/wn/" + im + "@2x.png"
-        let imageUrl = URL(string: imageStr)
-        weatherIcon.sd_setImage(with: imageUrl, completed: nil)
+//        descriptionLabel.text = description
+//        let im = cityWeather.weather?.first?.icon ?? ""
+//        let imageStr = "http://openweathermap.org/img/wn/" + im + "@2x.png"
+//        let imageUrl = URL(string: imageStr)
+//        weatherIcon.sd_setImage(with: imageUrl, completed: nil)
         
     }
 
     
     // MARK:- Initialization of the views
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -144,10 +181,11 @@ class CurrentWeatherCell:UICollectionViewCell {
         addSubview(leftContainerView)
         leftContainerView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 8, height: 30)
         
-        addSubview(loadingIconCityWeatherView)
-        loadingIconCityWeatherView.anchor(top: topAnchor, left: leftContainerView.rightAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
+        addSubview(loadingIconCityWeatherShimmerView)
+        loadingIconCityWeatherShimmerView.anchor(top: topAnchor, left: leftContainerView.rightAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
         
-            
+        loadingIconCityWeatherShimmerView.shimmerSpeed = 50
+
     }
     
     

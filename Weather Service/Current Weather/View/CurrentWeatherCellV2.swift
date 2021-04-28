@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 
+
 protocol CurrentWeatherCellProtocol:class {
     func didTapExpanse(weather:CurrentWeatherResponse)
 }

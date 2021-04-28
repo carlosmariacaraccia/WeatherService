@@ -60,9 +60,6 @@ class CurrentWeatherController:UICollectionViewController {
         collectionView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        collectionView.reloadData()
-    }
     
     // MARK:- Helper functions
     
@@ -81,8 +78,10 @@ class CurrentWeatherController:UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = .background
-        collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         //collectionView.register(CurrentWeatherCellV2.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(CurrentWeatherViewCellV3.self, forCellWithReuseIdentifier: reuseIdentifier)
+
     }
     
     
@@ -115,24 +114,12 @@ extension CurrentWeatherController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CurrentWeatherViewCellV3
 
         
-//        if let climateInCities = currentWeathers {
-//            let weather = climateInCities[indexPath.row]
-//            cell.delegate = self
-//            cell.currentWeather = climateInCities[indexPath.row]
-//            if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
-//                UIView.animate(withDuration: 0.5) {
-//                    cell.addDetailsButton.setTitle("HIDE DETAILS", for: .normal)
-//                    cell.mapView.isHidden = false
-//                    cell.setLocation()
-//                }
-//            } else {
-//                cell.addDetailsButton.setTitle("SHOW DETAILS", for: .normal)
-//                cell.mapView.isHidden = true
-//            }
-//        }
+        if let climateInCities = currentWeathers {
+            cell.cityWeather = climateInCities[indexPath.row]
+        }
         return cell
     }
 }
@@ -161,7 +148,7 @@ extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
         if tappedWeathers.contains(where: {$0.id == currentWeathers![indexPath.row].id} ) {
             return CGSize(width: view.frame.width - 24, height: 450)
         } else {
-            return CGSize(width: view.frame.width - 24, height: 150)
+            return CGSize(width: view.frame.width - 24, height: 120)
         }
     }
     
@@ -198,7 +185,10 @@ extension CurrentWeatherController: CurrentWeatherViewDelegateProtocol {
         // this is done to make all the cities appear toghether in the collection view.
         DispatchQueue.main.async {
             if numberOfCitiesStored == currentWeatherObjects.count {
-                self.currentWeathers = currentWeatherObjects
+        
+                // its safe to unwrap because we just reached from the web
+                let objects = currentWeatherObjects.sorted { $0.name! < $1.name! }
+                self.currentWeathers = objects
             }
         }
     }
@@ -207,4 +197,7 @@ extension CurrentWeatherController: CurrentWeatherViewDelegateProtocol {
         //TODO: - Handle appropiately the error with an alert controller
     }
 }
+
+
+
 

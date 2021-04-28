@@ -2,17 +2,21 @@ PODS:
   - SDWebImage (5.10.2):
     - SDWebImage/Core (= 5.10.2)
   - SDWebImage/Core (5.10.2)
+  - ShimmerSwift (2.1.1)
 
 DEPENDENCIES:
   - SDWebImage (~> 5.0)
+  - ShimmerSwift
 
 SPEC REPOS:
   trunk:
     - SDWebImage
+    - ShimmerSwift
 
 SPEC CHECKSUMS:
   SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  ShimmerSwift: f7ed2daf9c246de8299dfd9e12c6ab465cba9842
 
-PODFILE CHECKSUM: 6fb1df0293e2c11447ae804b1bd9ee82d871a2ea
+PODFILE CHECKSUM: e0bace9f379464667fffd86bee2bc03aaf76c1cc
 
 COCOAPODS: 1.10.1
