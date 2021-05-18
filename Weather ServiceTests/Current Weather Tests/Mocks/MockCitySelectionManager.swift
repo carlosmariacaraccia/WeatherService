@@ -13,6 +13,7 @@ import CoreData
 class MockCitySelectionManager:CitySelectionManagerProtocol {
     
     
+    
     var isFetchedCitiesInStudyCalled:Bool = false
     var citiesToReturn:[City]?
     
@@ -45,5 +46,8 @@ class MockCitySelectionManager:CitySelectionManagerProtocol {
     func save() {
     }
     
-    
+    func removeCityFromCitiesInStudy(cityIdToRemove: Int32) {
+        
+    }
+
 }

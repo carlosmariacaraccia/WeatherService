@@ -25,7 +25,7 @@ class MockCurrentWeatherWebService:WeatherWebServiceProtocol {
         if let responseError = failureErrorPassed {
             completionHandler(.failure(responseError))
         } else {
-            let currentWeatherResponse = CurrentWeatherResponse(weather: nil, base: nil, main: nil, visibility: nil, wind: nil, clouds: nil, dt: nil, sys: nil, timezone: nil, id: nil, name: nil, cod: nil)
+            let currentWeatherResponse = CurrentWeatherResponse(weather: nil, base: nil, main: nil, visibility: nil, wind: nil, clouds: nil, dt: nil, sys: nil, timezone: nil, id: nil, name: nil, cod: nil, coord: nil )
             completionHandler(.success(currentWeatherResponse))
         }
     }

@@ -10,6 +10,9 @@ import ShimmerSwift
 
 class CurrentWeatherViewCellV3:UICollectionViewCell {
     
+    // Pan gesture recognizer
+    var panGestureRecognizer:UIPanGestureRecognizer!
+    
     var cityWeather:CurrentWeatherResponse? {
         didSet {
             guard let cityWeather = cityWeather else { return }
@@ -31,8 +34,6 @@ class CurrentWeatherViewCellV3:UICollectionViewCell {
         let temp = cityWeather.main?.temp ?? 0.00
         let country = cityWeather.sys?.country ?? ""
         let description = cityWeather.weather?.first?.description ?? ""
-//      let maxTemp = cityWeather.main?.temp_max ?? 0.00
-//      let minTemp = cityWeather.main?.temp_min ?? 0.00
         cityTempLabel.text = name + ", \(country)" + ", \(temp)ºC"
         descpritionLabel.text = description
       let im = cityWeather.weather?.first?.icon ?? ""
@@ -40,6 +41,25 @@ class CurrentWeatherViewCellV3:UICollectionViewCell {
       let imageUrl = URL(string: imageStr)
       iconImageView.sd_setImage(with: imageUrl, completed: nil)
     }
+    
+    // MARK: - Delete label to insert below the content view
+    
+    private lazy var deleteLabel:UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Avenir Next Bold", size: 18)
+        label.textColor = .white
+        label.text = "Delete"
+        return label
+    }()
+    
+    private lazy var deleteLabel2:UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Avenir Next Bold", size: 18)
+        label.textColor = .white
+        label.text = "Delete"
+        return label
+    }()
+    
     
     // MARK: - Main city stack view
     private lazy var cityShimmerView:ShimmeringView = {
@@ -139,19 +159,29 @@ class CurrentWeatherViewCellV3:UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(horizontalStackView)
+        self.backgroundColor = .red
         
-        backgroundColor = .white
+        self.contentView.addSubview(horizontalStackView)
+        self.contentView.backgroundColor = .white
         
+        // set the corner radius property
         layer.cornerRadius = 12
         layer.borderWidth = 1
         layer.borderColor = UIColor.lightGray.cgColor
         
+        // set the constraints
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
-        horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
+        horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        
+        // set the delete label below the content view
+        self.insertSubview(deleteLabel, belowSubview: contentView)
+        self.insertSubview(deleteLabel2, belowSubview: contentView)
+        
+        // set up the pan gesture recognizer
+        setupPanGestureRecognizer()
         
     }
     
@@ -159,7 +189,50 @@ class CurrentWeatherViewCellV3:UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupPanGestureRecognizer() {
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        panGestureRecognizer.delegate = self
+        self.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    
+}
 
+
+extension CurrentWeatherViewCellV3:UIGestureRecognizerDelegate {
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if (panGestureRecognizer.state == UIGestureRecognizer.State.changed) {
+            let panPoint = panGestureRecognizer.translation(in: self)
+            let width = contentView.frame.width
+            let height = contentView.frame.height
+            
+            contentView.frame = CGRect(x: panPoint.x, y: 0, width: width, height: height)
+            deleteLabel.frame = CGRect(x: panPoint.x - deleteLabel.frame.size.width - 6, y: 0, width: 100, height: height)
+            deleteLabel2.frame = CGRect(x: panPoint.x + width + deleteLabel2.frame.size.width, y: 0, width: 100, height: height)
+            
+        }
+    }
+    
+    @objc func onPan(_ pan: UIPanGestureRecognizer) {
+        if pan.state == UIGestureRecognizer.State.began {
+
+        } else if pan.state == UIGestureRecognizer.State.changed {
+        self.setNeedsLayout()
+      } else {
+        if abs(pan.velocity(in: self).x) > 500 {
+          let collectionView: UICollectionView = self.superview as! UICollectionView
+          let indexPath: IndexPath = collectionView.indexPathForItem(at: self.center)!
+          collectionView.delegate?.collectionView!(collectionView, performAction: #selector(onPan(_:)), forItemAt: indexPath, withSender: nil)
+        } else {
+          UIView.animate(withDuration: 0.2, animations: {
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+          })
+        }
+      }
+    }
 }

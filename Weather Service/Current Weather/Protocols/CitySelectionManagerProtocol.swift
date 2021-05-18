@@ -12,7 +12,7 @@ protocol CitySelectionManagerProtocol:AnyObject {
     
     init(container:NSPersistentContainer)
     func insertCity(withId id:Int32, name:String, state:String, country:String, lat:Double, lon:Double) -> City?
-    func removeCityFromCitiesInStudy(cityToRemove city:City)
+    func removeCityFromCitiesInStudy(cityIdToRemove:Int32)
     func fetchCitiesInStudy() -> [City]?
     func save()
 }

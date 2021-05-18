@@ -16,6 +16,7 @@ class CurrentWeatherController:UICollectionViewController {
     
     // MARK:- Properties
     
+    
     var tappedWeathers = [CurrentWeatherResponse]() {
         didSet {
             collectionView.reloadData()
@@ -78,8 +79,6 @@ class CurrentWeatherController:UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = .background
-        //collectionView.register(CurrentWeatherCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        //collectionView.register(CurrentWeatherCellV2.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(CurrentWeatherViewCellV3.self, forCellWithReuseIdentifier: reuseIdentifier)
 
     }
@@ -91,6 +90,7 @@ class CurrentWeatherController:UICollectionViewController {
         actionButton.layer.cornerRadius = 56 / 2
     }
     
+    
     // MARK:- Selectors
     
     @objc func handleActionButtonTap() {
@@ -99,6 +99,7 @@ class CurrentWeatherController:UICollectionViewController {
         navCon.modalPresentationStyle = .fullScreen
         present(navCon, animated: true, completion: nil)
     }
+
     
 }
 
@@ -159,6 +160,16 @@ extension CurrentWeatherController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         10
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+        // TODO: Remove the city from selected cities in core data, user the city id to find the city in the list of cities in study.
+        guard let weathers = currentWeathers else { return }
+        guard let idToRemove = weathers[indexPath.row].id else { return }
+        let id = Int32(idToRemove)
+        currentWeatherPresenter?.removeFromSelectedCities(cityId: id)
+        currentWeatherPresenter?.fetchWeatherForSeletedCities()
+        collectionView.reloadData()
+    }
 }
 
 extension CurrentWeatherController:CurrentWeatherCellProtocol {
@@ -169,7 +180,6 @@ extension CurrentWeatherController:CurrentWeatherCellProtocol {
             tappedWeathers.append(weather)
         }
     }
-    
     
 }
 

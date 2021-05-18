@@ -14,5 +14,6 @@ protocol CurrentWeatherPresenterProtocol:AnyObject {
     
     func fetchNumberOfStoredCities() -> Int?
     func fetchWeatherForSeletedCities()
+    func removeFromSelectedCities(cityId:Int32)
     
 }

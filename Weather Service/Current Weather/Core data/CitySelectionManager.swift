@@ -76,8 +76,18 @@ class CitySelectionManager:CitySelectionManagerProtocol {
         
     /// Removes City form the citiesInStudy relatioship.
     /// - Parameter city: the City object that is a subclass of NSManagedObject.
-    func removeCityFromCitiesInStudy(cityToRemove city:City) {
-        city.cityInStudy = nil
+    func removeCityFromCitiesInStudy(cityIdToRemove:Int32) {
+        
+        // get the array of cities in study
+        let citiesInStudy = fetchCitiesInStudy()
+        
+        // get the city that matches the id
+        let cityToRemove = citiesInStudy?.first(where: { $0.id == cityIdToRemove })
+        
+        // remove the reference to the cities in study
+        cityToRemove?.cityInStudy = nil
+        
+        try? persistentContainer.viewContext.save()
     }
     
     /// Saves the current context if is has changes.

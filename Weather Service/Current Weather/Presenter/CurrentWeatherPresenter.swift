@@ -24,6 +24,11 @@ class CurrentWeatherPresenter:CurrentWeatherPresenterProtocol {
         self.selectionManager = selectionManager
     }
     
+    func removeFromSelectedCities(cityId:Int32) {
+        
+        selectionManager.removeCityFromCitiesInStudy(cityIdToRemove: cityId)
+    }
+    
 
     func fetchNumberOfStoredCities() -> Int? {
         selectionManager.fetchCitiesInStudy()?.count
